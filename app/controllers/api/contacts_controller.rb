@@ -5,7 +5,7 @@ class Api::ContactsController < ApplicationController
   end
 
   def all_contacts_action
-    @contacts = [Contact.first,Contact.second,Contact.third]
+    @contacts = Contact.all
     render "all_contacts_view.json.jbuilder"
   end
 end
