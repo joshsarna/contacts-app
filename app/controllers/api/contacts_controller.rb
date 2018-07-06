@@ -34,5 +34,6 @@ class Api::ContactsController < ApplicationController
       email: params[:email]|| @contact.email,
       phone_number: params[:phone_number] || @contact.phone_number
     )
+    render "show.json.jbuilder"
   end
 end
