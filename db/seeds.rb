@@ -6,5 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-contact = Contact.new(first_name: "Scooby", last_name: "Dooby-Doo", email: "mysterydog@shaggysserver.com", phone_number: "23452345")
-contact.save
+# contact = Contact.new(first_name: "Scooby", last_name: "Dooby-Doo", email: "mysterydog@shaggysserver.com", phone_number: "23452345")
+# contact.save
+
+contacts = Contact.all
+users = User.all
+
+contacts.each do |contact|
+  contact.user_id = users.sample.id
+  contact.save
+end

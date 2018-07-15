@@ -5,7 +5,7 @@ class Api::ContactsController < ApplicationController
   end
 
   def index
-    @contacts = Contact.all
+    @contacts = Contact.where(user_id: current_user['id'])
     render "index.json.jbuilder"
   end
 
@@ -22,7 +22,9 @@ class Api::ContactsController < ApplicationController
       last_name: params[:last_name],
       email: params[:email],
       phone_number: params[:phone_number],
-      bio: params[:bio]
+      bio: params[:bio],
+      odor: Faker::Coffee.notes,
+      user: current_user,
     )
     @contact.save
     render "show.json.jbuilder"
