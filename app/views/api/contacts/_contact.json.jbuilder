@@ -13,3 +13,4 @@ end
 
 json.user contact.user
 json.odor contact.odor
+json.groups contact.groups

@@ -10,9 +10,22 @@
 # contact.save
 
 contacts = Contact.all
-users = User.all
+groups = Group.all
 
 contacts.each do |contact|
-  contact.user_id = users.sample.id
-  contact.save
+  first_group = groups.shuffle.pop
+  second_group = groups.shuffle.pop
+  ContactGroup.create(contact_id: contact.id, group_id: first_group.id)
+  ContactGroup.create(contact_id: contact.id, group_id: second_group.id)
 end
+
+# even_numbers = [0..29].map{|x| x.even?}
+# relationships = 
+
+
+# users = User.all
+
+# contacts.each do |contact|
+#   contact.user_id = users.sample.id
+#   contact.save
+# end

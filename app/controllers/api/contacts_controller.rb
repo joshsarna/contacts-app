@@ -5,8 +5,23 @@ class Api::ContactsController < ApplicationController
   end
 
   def index
-    @contacts = Contact.where(user_id: current_user['id'])
-    render "index.json.jbuilder"
+    if params[:group]
+      input_group = params[:group]
+      if current_user
+        group = Group.find_by(name: params[:group])
+        @contacts = group.contacts.where(user_id: current_user['id'])
+        render "index.json.jbuilder"
+      else
+        render json: []
+      end
+    else
+      if current_user
+        @contacts = Contact.where(user_id: current_user['id'])
+        render "index.json.jbuilder"
+      else
+        render json: []
+      end
+    end
   end
 
   def destroy
